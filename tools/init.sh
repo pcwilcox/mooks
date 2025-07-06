@@ -60,7 +60,7 @@ create_dirs() {
   for dir in "${dirs[@]}"; do
     if [ ! -d "$TMUX_DIR/$dir" ]; then
       println "  mkdir $TMUX_DIR/$dir"
-	    mkdir -p "$TMUX_DIR/$dir"
+      mkdir -p "$TMUX_DIR/$dir"
     fi
   done
 }
@@ -72,7 +72,7 @@ create_files() {
   for file in "${files[@]}"; do
     if [ ! -f "$TMUX_DIR/conf.d/$file" ]; then
       println "  touch $TMUX_DIR/conf.d/$file"
-	    touch "$TMUX_DIR/conf.d/$file"
+      touch "$TMUX_DIR/conf.d/$file"
     fi
   done
 }
@@ -88,12 +88,12 @@ cp_main_conf() {
 
 # set mooks paths in main.conf
 set_paths() {
-  sed -i "s|@mooks-dir '[^']*'|@mooks-dir '$MOOKS_DIR'|" "$TMUX_DIR/conf.d/main.conf"
-  sed -i "s|@mooks-install-dir '[^']*'|@mooks-install-dir '$MOOKS_DIR'|" "$TMUX_DIR/conf.d/main.conf"
-  sed -i "s|@mooks-tmux-conf '[^']*'|@mooks-tmux-conf '$MOOKS_DIR/tmux.conf'|" "$TMUX_DIR/conf.d/main.conf"
+  sed -i '' "s|@mooks-dir '[^']*'|@mooks-dir '$MOOKS_DIR'|" "$TMUX_DIR/conf.d/main.conf"
+  sed -i '' "s|@mooks-install-dir '[^']*'|@mooks-install-dir '$MOOKS_DIR'|" "$TMUX_DIR/conf.d/main.conf"
+  sed -i '' "s|@mooks-tmux-conf '[^']*'|@mooks-tmux-conf '$MOOKS_DIR/tmux.conf'|" "$TMUX_DIR/conf.d/main.conf"
 }
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MOOKS_DIR="$(dirname "$DIR")"
 source "$DIR/lib/variables.sh"
 source "$DIR/lib/utils.sh"
@@ -108,7 +108,7 @@ declare -r mooks_skip_init mooks_autoupdate_enable
 # shellcheck disable=SC2034
 declare -a conf_dirs=("conf.d" "plugins" "scripts" "themes")
 # shellcheck disable=SC2034
-declare -a conf_files=("auto_plugins.conf" "bindings.conf" "hooks.conf" "options.conf" "plugins.conf" )
+declare -a conf_files=("auto_plugins.conf" "bindings.conf" "hooks.conf" "options.conf" "plugins.conf")
 
 # exit if skip-init is set
 if [ "$mooks_skip_init" == "true" ]; then
